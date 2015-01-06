@@ -9,7 +9,7 @@
 #### Variables
 
 dir=~/dotfiles
-olddir=~/dofiles_old
+olddir=~/dotfiles_old
 files="emacs profile"
 
 ####
@@ -20,7 +20,7 @@ mkdir -p $olddir
 echo "...done"
 
 # change to the dotfiles directory
-echo "Changin to the $dir directory"
+echo "Changing to the $dir directory"
 cd $dir
 echo "...done"
 
@@ -32,4 +32,3 @@ for file in $files; do
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/.$file
 done
-
