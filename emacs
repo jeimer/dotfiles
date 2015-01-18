@@ -1,5 +1,3 @@
-;testing git commit
-;(setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages:")
 
 (require 'cl)
 
@@ -16,13 +14,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defvar my-packages
-  '(auctex auto-complete magit yasnippet)
+  '(auctex auto-complete autopair magit yasnippet)
   "A list of packages to ensure are installed at launch.")
 
 (defun my-packages-installed-p ()
   (loop for p in my-packages
-          when (not (package-installed-p p)) do (return -1)
-	          finally (return 1)))
+          when (not (package-installed-p p)) do (return nil)
+	          finally (return t)))
 
 (unless (my-packages-installed-p)
   ;; check for new packages (package versions)
@@ -139,10 +137,13 @@
 ;; Misc  ;;
 ;;;;;;;;;;;
 
+(defalias 'yes-or-no-p 'y-or-n-p)
 (setq echo-keystrokes 0.1
       use-dialog-box -1
       visible-bell 1)
 (show-paren-mode 1)
+
+(require 'autopair)
 
 ;;;;;;;;;;;;;;
 ;;  AucTeX  ;;
@@ -177,22 +178,16 @@
 
 ;(server-start); start emacs in server mode so that skim can talk to it.
 
-;;;;;;;;;;;;;;
-;; Org Mode ;;
-;;;;;;;;;;;;;;
-
-
-
 ;;;;;;;;;;
 ;; Ido  ;;
 ;;;;;;;;;;
 
-(ido-mode 1)
-(setq ido-enable-flex-matching 1
-      ido-use-virtual-buffers 1)
+(ido-mode t)
+(setq ido-enable-flex-matching t
+      ido-use-virtual-buffers t)
 
 ;;column number mode
-(setq column-number-mode 1)
+(setq column-number-mode t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; yasnippet and autocomplete ;;
@@ -200,7 +195,7 @@
 
 (require 'yasnippet)
 (setq yas-snippet-dirs 'yas-installed-snippets-dir)
-(yas-global-mode 1)
+(yas-global-mode t)
 
 (require 'auto-complete-config)
 
@@ -215,3 +210,4 @@
 
 (require 'tex-site)
 (require 'font-latex)
+
