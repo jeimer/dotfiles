@@ -53,7 +53,7 @@
 ;; start up ;;
 ;;;;;;;;;;;;;;
 
-(setq inhibit-splash-screen 1		;;turn off splash screen
+(setq inhibit-splash-screen t		;;turn off splash screen
       initial-scratch-message nil	;;remove initial message
       initial-major-mode 'org-mode) 	;;turn on org-mode
 
@@ -69,9 +69,9 @@
 ;; marking text ;;
 ;;;;;;;;;;;;;;;;;;
 
-(delete-selection-mode 1)
-(transient-mark-mode 1)
-(setq x-select-enable-clipboard 1)
+(delete-selection-mode t)
+(transient-mark-mode t)
+(setq x-select-enable-clipboard t)
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; display settings ;;
@@ -118,7 +118,7 @@
 ;; backup files ;;
 ;;;;;;;;;;;;;;;;;;
 
-(setq make-backup-files -1) ;;turn off backup files
+(setq make-backup-files nil) ;;turn off backup files
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; global key bindings ;;
@@ -139,9 +139,9 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq echo-keystrokes 0.1
-      use-dialog-box -1
-      visible-bell 1)
-(show-paren-mode 1)
+      use-dialog-box nil
+      visible-bell t)
+(show-paren-mode t)
 
 (require 'autopair)
 
