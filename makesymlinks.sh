@@ -10,9 +10,9 @@
 
 dir=~/dotfiles
 olddir=~/dotfiles_old
-files="emacs profile"
+files="emacs bashrc profile"
 
-####
+###
 
 # create dotfiles_old in homedir
 echo "Creating $olddir for backup of any existing dotfiles in ~"

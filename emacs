@@ -14,7 +14,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defvar my-packages
-  '(auctex auto-complete autopair magit yasnippet)
+  '(auctex auto-complete autopair ess magit solarized-theme yasnippet)
   "A list of packages to ensure are installed at launch.")
 
 (defun my-packages-installed-p ()
@@ -29,6 +29,11 @@
   (dolist (p my-packages)
     (when (not (package-installed-p p))
       (package-install p))))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; manually required packages ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -57,13 +62,25 @@
       initial-scratch-message nil	;;remove initial message
       initial-major-mode 'org-mode) 	;;turn on org-mode
 
+(defun copy-from-osx ()
+(shell-command-to-string "pbpaste"))
+
+(defun paste-to-osx (text &optional push)
+(let ((pprocess-connection-type nil))
+(let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+(process-send-string proc text)
+(process-send-eof proc))))
+
+(setq interprogram-cut-function 'paste-to-osx)
+(setq interprogram-paste-function 'copy-from-osx)
+
 ;;;;;;;;;;
 ;; bars ;;
 ;;;;;;;;;;
 
-(scroll-bar-mode -1)  ;;turn off scroll bar
-(tool-bar-mode -1)    ;;turn off tool bar
-(menu-bar-mode -1)    ;;turn off menu bar
+;;(if window_system (scroll-bar-mode nil))  ;;turn off scroll bar
+;;(if window_system ((tool-bar-mode nil))    ;;turn off tool bar
+;;(if window_system ((menu-bar-mode nil))    ;;turn off menu bar
 
 ;;;;;;;;;;;;;;;;;;
 ;; marking text ;;
@@ -77,7 +94,7 @@
 ;; display settings ;;
 ;;;;;;;;;;;;;;;;;;;;;;
 
-;;this is only used when running cocoa app. 
+;;this is only used when running cocoa app.
 (when window-system
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
     (set-face-attribute 'default nil
@@ -157,15 +174,14 @@
 (add-hook 'LaTex-mode-hook 'visual-line-mode)
 (add-hook 'LaTex-mode-hook 'flyspell-mode)
 (add-hook 'LaTex-mode-hook 'LaTex-math-mode)
-
 (add-hook 'LaTex-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
 (setq TeX-PDF-mode t)
 
 ;use Skim as viewer
 (add-hook 'LaTeX-mode-hook (lambda()
-(push
-    '("latexmk" "latexmk -synctex=1 -pdf %s" TeX-run-TeX nil t
+  (push
+    '("latexmk" "latexmk -pdf %s" TeX-run-TeX nil t
       :help "Run latexmk on file")
     TeX-command-list)))
 
@@ -211,3 +227,52 @@
 (require 'tex-site)
 (require 'font-latex)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; indentation and buffer cleanup ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun untabify-buffer ()
+  (interactive)
+  (untabify (point-min) (point-max)))
+
+(defun indent-buffer ()
+  (interactive)
+  (indent-region (point-min) (point-max)))
+
+(defun cleanup-buffer ()
+  "Perform a bunch of operations on the whitespace content of a buffer."
+  (interactive)
+  (indent-buffer)
+  (untabify-buffer)
+  (delete-trailing-whitespace))
+
+(defun cleanup-region (beg end)
+  "Remove tmux artifacts from region."
+  (interactive "r")
+  (dolist (re '("\\\\│\·*\n" "\W*│\·*"))
+    (replace-regexp re "" nil beg end)))
+
+(global-set-key (kbd "C-x M-t") 'cleanup-region)
+(global-set-key (kbd "C-c n") 'cleanup-buffer)
+
+(setq-default show-trailing-whitespace t)
+
+;;;;;;;;;;;;;;
+;; flyspell ;;
+;;;;;;;;;;;;;;
+
+(setq flyspell-issue-welcome-flag nil)
+(if (eq system-type 'darwin)
+  (setq-default ispell-program-name "/usr/local/bin/aspell")
+  (setq-default ispell-program-name "/usr/bin/aspell"))
+(setq-default ispell-list-command "list")
+
+
+
+;;;;;;;;;;;;;
+;; Themes  ;;
+;;;;;;;;;;;;;
+
+(if window-system
+  (load-theme 'solarized-light t)
+  (load-theme 'wombat t))
