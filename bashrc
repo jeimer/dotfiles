@@ -24,6 +24,8 @@ elif [[ "$(uname -n)" == "thenewshoot"* ]]; then
    echo "welcome to thenewshoot"
    NAME=thenewshoot
    colordir=/usr/local/bin/dircolors
+   #export CLICOLOR=1
+   #export LSCOLORS=ExFxBxDxCxegedabagacad
 else
    colordir=/usr/bin/dircolors
 fi
@@ -33,16 +35,10 @@ if [ -x "$colordir" ]; then
    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
-#enable color support of ls and some aliases
-if [ -x "$colordir" ]; then
-   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-   alias ls='ls --color=auto'
-   alias grep='grep --color=auto'
-   alias fgrep='fgrep --color=auto'
-   alias egrep='egrep --color=auto'
-fi
-
-
+#load ls_colors
+#if [ -f "$HOME/.ls_colors" ]; then
+#   . $HOME/.ls_color;
+#fi
 
 #identify operating system
 if [ "$(uname -s)" = "Darwin" ]; then
@@ -66,7 +62,5 @@ elif [ $OS = "Linux" ]; then
    alias egrep='egrep --color=auto'
 fi
 
-#define more aliases
-if [ -x "$colordir" ]; then
-   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-fi
+alias date="TZ=":US/Eastern" date && date -u"
+
