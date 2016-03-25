@@ -8,9 +8,9 @@
 
 #### Variables
 
-dir=~/dotfiles
-olddir=~/dotfiles_old
-files="emacs bashrc profile"
+dir=$HOME/dotfiles
+olddir=$HOME/dotfiles_old
+files="emacs bashrc profile ls_colors"
 
 ###
 
@@ -28,7 +28,7 @@ echo "...done"
 # then create symlinks
 for file in $files; do
     echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/.$file ~/dotfiles_old/
+    mv $HOME/.$file $HOME/dotfiles_old/
     echo "Creating symlink to $file in home directory."
-    ln -s $dir/$file ~/.$file
+    ln -s $dir/$file $HOME/.$file
 done
