@@ -20,20 +20,22 @@ if [ "$(uname -n)" = "omar" ]; then
    echo "welcome to omar"
    NAME=omar
    colordir=/usr/bin/dircolors
+   if [ -f "$HOME/.ls_colors" ]; then
+      . $HOME/.ls_color;
+   fi
 elif [[ "$(uname -n)" == "thenewshoot"* ]]; then
    echo "welcome to thenewshoot"
    NAME=thenewshoot
-   colordir=/usr/local/bin/dircolors
-   #export CLICOLOR=1
-   #export LSCOLORS=ExFxBxDxCxegedabagacad
+   export CLICOLOR=1
+   export LSCOLORS=ExFxBxDxCxegedabagacad
 else
    colordir=/usr/bin/dircolors
 fi
 
 #load dircolors
-if [ -x "$colordir" ]; then
-   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-fi
+#if [ -x "$colordir" ]; then
+#   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+#fi
 
 #load ls_colors
 #if [ -f "$HOME/.ls_colors" ]; then
@@ -56,11 +58,14 @@ if [ $OS = "OSX" ]; then
    alias omar="ssh -X eimer@omar.pha.jhu.edu"
    alias ls="gls --color=auto"
 elif [ $OS = "Linux" ]; then
-   alias ls='ls --color=auto'
+   #alias ls='ls --color=auto'
    alias grep='grep --color=auto'
    alias fgrep='fgrep --color=auto'
    alias egrep='egrep --color=auto'
 fi
 
 alias date="TZ=":US/Eastern" date && date -u"
+alias ml_env="source ~/Virtualenvs/dato-env/bin/activate"
 
+#require virtualenv for pip to run
+export PIP_REQUIRE_VIRTUALENV=true
