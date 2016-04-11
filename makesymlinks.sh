@@ -10,7 +10,7 @@
 
 dir=$HOME/dotfiles
 olddir=$HOME/dotfiles_old
-files="emacs bashrc profile mac_aliases linux_aliases dircolors"
+files="emacs bashrc profile mac_aliases linux_aliases dircolors mac_sys_vars linux_sys_vars"
 
 ###
 

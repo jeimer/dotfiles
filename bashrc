@@ -5,7 +5,7 @@ case $- in
 esac
 
 ############################
-#system independend controls
+#system independent controls
 ############################
 
 #ingore lines that begin with a space and duplicate command in bash history
@@ -17,6 +17,11 @@ shopt -s histappend
 #check window size and update values of LINES and COLUMNS if window is required
 shopt -s checkwinsize
 
+
+############################
+#system dependent controls
+############################
+
 #identify operating system
 if [ "$(uname -s)" = "Darwin" ]; then
    OS="OSX"
@@ -27,28 +32,9 @@ fi
 #define shortcut commands based on OS
 if [ $OS = "OSX" ]; then
    . ~/.mac_aliases
-   #alias omar="ssh -X eimer@omar.pha.jhu.edu"
-   #alias ls="gls --color"
-   #alias dircolors="gdircolors"
-   #alias ml_env="source ~/Virtualenvs/dato-env/bin/activate"
-   #alias tree="tree -C"
 elif [ $OS = "Linux" ]; then
    . ~/.linux_aliases
-   #alias ls='ls --color'
-   #alias grep='grep --color'
-   #alias fgrep='fgrep --color'
-   #alias egrep='egrep --color'
 fi
-
-#ignore lines that begin with a space and duplicate command in bash history
-HISTCONTROL=ignoreboth
-#check window size after a command and update the values of LINES and COLLUMNS
-shopt -s checkwinsize
-
-case "$TERM" in
-    xterm-color)
-       color_prompt=yes;;
-esac
 
 #deterimine computer name and specify computer dependent directories and paths
 if [[ "$(uname -n)" == "thenewshoot"* ]]; then
@@ -65,6 +51,15 @@ elif [ "$(uname -n)" = "omar" ]; then
    name=omar
    colordir=/usr/bin/dircolors
    [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+   export PATH="/etc/anaconda/bin:$PATH"
+   export MOBY2_PREFIX=$HOME/class/build
+   export LDFLAGS="-L$MOBY2_PREFIX/lib $LDFLAGS"
+   export CFLAGS="-I$MOBY2_PREFIX/include -I$HOME/local/include $CFLAGS "
+   export CPPFLAGS="-I$MOBY2_PREFIX/include -I$HOME/local/include $CPPFLAGS"
+   export LDFLAGS="-L$HOME/local/lib $LDFLAGS"
+   export PATH=$MOBY2_PREFIX/bin:$PATH
+   export PYTHONPATH=$MOBY2_PREFIX/lib64/python2.7/site-packages:$MOBY2_PREFIX/lib/python2.7/site-packages:$HOME/local/lib64/python2.7/site-packages:$HOME/local/lib/python2.7/site-packages:$PYTHONPATH
+   export LD_LIBRARY_PATH=$MOBY2_PREFIX/lib64:$MOBY2_PREFIX/lib:$HOME/local/lib:$LD_LIBRARY_PATH
 else
    echo "setup of profile and PATH required"
    colordir=/usr/bin/dircolors
