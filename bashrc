@@ -17,6 +17,9 @@ shopt -s histappend
 #check window size and update values of LINES and COLUMNS if window is required
 shopt -s checkwinsize
 
+#computer independend alias
+alias date="TZ=":US/Eastern" date && date -u"
+
 
 ############################
 #system dependent controls
@@ -39,18 +42,14 @@ fi
 #deterimine computer name and specify computer dependent directories and paths
 if [[ "$(uname -n)" == "thenewshoot"* ]]; then
    echo "welcome to thenewshoot"
-   name=thenewshoot
-   colordir=/usr/local/bin/gdircolors
-   PATH=/usr/local/bin:/usr/local/sbin:$PATH
-   PYTHONPATH=$PYTHONPATH:/Users/jeimer/Documents/CLASS/optics/python
-   export PATH PYTHONPATH
-   export PIP_REQUIRE_VIRTUALENV=true  #require virtualenv for pip to run
+   . ~/.mac_sys_vars
    [ -x /usr/local/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 elif [ "$(uname -n)" = "omar" ]; then
    echo "welcom to omar"
    name=omar
    colordir=/usr/bin/dircolors
    [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+   . ~/.linux_sys_vars
    export PATH="/etc/anaconda/bin:$PATH"
    export MOBY2_PREFIX=$HOME/class/build
    export LDFLAGS="-L$MOBY2_PREFIX/lib $LDFLAGS"
@@ -70,6 +69,3 @@ fi
 if [ -x "$colordir" ]; then
    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
-
-#computer independend alias
-alias date="TZ=":US/Eastern" date && date -u"
