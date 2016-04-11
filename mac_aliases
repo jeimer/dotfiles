@@ -1,0 +1,5 @@
+alias omar="ssh -X eimer@omar.pha.jhu.edu"
+alias ls="gls --color"
+alias dircolors="gdircolors"
+alias ml_env="source ~/Virtualenvs/dato-env/bin/activate"
+alias tree="tree -C"

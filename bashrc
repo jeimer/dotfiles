@@ -26,16 +26,18 @@ fi
 
 #define shortcut commands based on OS
 if [ $OS = "OSX" ]; then
-   alias omar="ssh -X eimer@omar.pha.jhu.edu"
-   alias ls="gls --color"
-   alias dircolors="gdircolors"
-   alias ml_env="source ~/Virtualenvs/dato-env/bin/activate"
-   alias tree="tree -C"
+   . ~/.mac_aliases
+   #alias omar="ssh -X eimer@omar.pha.jhu.edu"
+   #alias ls="gls --color"
+   #alias dircolors="gdircolors"
+   #alias ml_env="source ~/Virtualenvs/dato-env/bin/activate"
+   #alias tree="tree -C"
 elif [ $OS = "Linux" ]; then
-   alias ls='ls --color'
-   alias grep='grep --color'
-   alias fgrep='fgrep --color'
-   alias egrep='egrep --color'
+   . ~/.linux_aliases
+   #alias ls='ls --color'
+   #alias grep='grep --color'
+   #alias fgrep='fgrep --color'
+   #alias egrep='egrep --color'
 fi
 
 #ignore lines that begin with a space and duplicate command in bash history
