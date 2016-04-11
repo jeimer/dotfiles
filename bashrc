@@ -36,12 +36,12 @@ esac
 #deterimine computer name and specify computer dependent directories and paths
 if [ "$(uname -n)" = "omar" ]; then
    echo "welcome to omar"
-   NAME=omar
+   name=omar
    colordir=/usr/bin/dircolors
 elif [[ "$(uname -n)" == "thenewshoot"* ]]; then
    echo "welcome to thenewshoot"
-   NAME=thenewshoot
-   colordir=/usr/bin/gdircolors
+   name=thenewshoot
+   colordir=/usr/local/bin/gdircolors
    #export CLICOLOR=1
    #export LSCOLORS=ExFxBxDxCxegedabagacad
    PATH=/usr/local/bin:/usr/local/sbin:$PATH
@@ -54,6 +54,7 @@ fi
 
 #load dircolors
 if [ -x "$colordir" ]; then
+   echo "colordir works"
    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
