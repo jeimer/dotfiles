@@ -1,4 +1,4 @@
 colordir=/usr/local/bin/gdircolors
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export PYTHONPATH=$PYTHONPATH:/Users/jeimer/Documents/CLASS/optics/python
+export PYTHONPATH=$PYTHONPATH:/Users/jeimer/Documents/CLASS/python:/Users/jeimer/Documents/CLASS/optics/python
 export PIP_REQUIRE_VIRTUALENV=true  #require virtualenv for pip to run
