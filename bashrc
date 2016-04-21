@@ -45,7 +45,7 @@ if [[ "$(uname -n)" == "thenewshoot"* ]]; then
    . ~/.mac_sys_vars
    [ -x /usr/local/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 elif [ "$(uname -n)" = "omar" ]; then
-   echo "welcom to omar"
+   echo "welcome to omar"
    name=omar
    colordir=/usr/bin/dircolors
    [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
