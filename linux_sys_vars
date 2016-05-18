@@ -5,5 +5,5 @@ export CFLAGS="-I$MOBY2_PREFIX/include -I$HOME/local/include $CFLAGS "
 export CPPFLAGS="-I$MOBY2_PREFIX/include -I$HOME/local/include $CPPFLAGS"
 export LDFLAGS="-L$HOME/local/lib $LDFLAGS"
 export PATH=$MOBY2_PREFIX/bin:$PATH
-export PYTHONPATH=$MOBY2_PREFIX/lib64/python2.7/site-packages:$MOBY2_PREFIX/lib/python2.7/site-packages:$HOME/local/lib64/python2.7/site-packages:$HOME/local/lib/python2.7/site-packages:$PYTHONPATH
+export PYTHONPATH=$MOBY2_PREFIX/lib64/python2.7/site-packages:$MOBY2_PREFIX/lib/python2.7/site-packages:$PYTHONPATH
 export LD_LIBRARY_PATH=$MOBY2_PREFIX/lib64:$MOBY2_PREFIX/lib:$HOME/local/lib:$LD_LIBRARY_PATH
