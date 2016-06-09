@@ -273,6 +273,6 @@
 ;; Themes  ;;
 ;;;;;;;;;;;;;
 
-(if window-system
-  (load-theme 'solarized-light t)
-  (load-theme 'wombat t))
+;(if window-system
+;  (load-theme 'solarized-light t)
+;  (load-theme 'wombat t))
