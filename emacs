@@ -14,7 +14,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defvar my-packages
-  '(auctex auto-complete autopair ess magit solarized-theme yasnippet)
+  '(auctex auto-complete autopair ess solarized-theme yasnippet)
   "A list of packages to ensure are installed at launch.")
 
 (defun my-packages-installed-p ()
@@ -62,17 +62,17 @@
       initial-scratch-message nil	;;remove initial message
       initial-major-mode 'org-mode) 	;;turn on org-mode
 
-(defun copy-from-osx ()
-(shell-command-to-string "pbpaste"))
+;(defun copy-from-osx ()
+;(shell-command-to-string "pbpaste"))
 
-(defun paste-to-osx (text &optional push)
-(let ((pprocess-connection-type nil))
-(let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
-(process-send-string proc text)
-(process-send-eof proc))))
+;(defun paste-to-osx (text &optional push)
+;(let ((pprocess-connection-type nil))
+;(let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+;(process-send-string proc text)
+;(process-send-eof proc))))
 
-(setq interprogram-cut-function 'paste-to-osx)
-(setq interprogram-paste-function 'copy-from-osx)
+;(setq interprogram-cut-function 'paste-to-osx)
+;(setq interprogram-paste-function 'copy-from-osx)
 
 ;;;;;;;;;;
 ;; bars ;;
