@@ -45,8 +45,8 @@
      (normal-top-level-add-subdirs-to-load-path))
 
 (require 'exec-path-from-shell)
-(when (memq window-system '(mac ns))
-      (exec-path-from-shell-initialize))
+;(when (memq window-system '(mac ns))
+;      (exec-path-from-shell-initialize))
 
 
 ;;setings from:
