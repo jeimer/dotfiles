@@ -1,9 +1,11 @@
-export PATH="/etc/anaconda/bin:$PATH"
+export OMP_THREAD_LIMIT=50
+export OMP_NUM_THREADS=2
+export PATH="/etc/anaconda/bin:/home/eimer/bin:$PATH"
 export MOBY2_PREFIX=$HOME/class/build
 export LDFLAGS="-L$MOBY2_PREFIX/lib $LDFLAGS"
 export CFLAGS="-I$MOBY2_PREFIX/include -I$HOME/local/include $CFLAGS "
 export CPPFLAGS="-I$MOBY2_PREFIX/include -I$HOME/local/include $CPPFLAGS"
 export LDFLAGS="-L$HOME/local/lib $LDFLAGS"
 export PATH=$MOBY2_PREFIX/bin:$PATH
-export PYTHONPATH=$HOME/class/my_dev/class_dev:$MOBY2_PREFIX/lib64/python2.7/site-packages:$MOBY2_PREFIX/lib/python2.7/site-packages:$HOME/class/Detector-Analysis/Visualization_tools/FP_Qband:$PYTHONPATH
+export PYTHONPATH=$HOME/class/my_dev/class_dev:$MOBY2_PREFIX/lib64/python2.7/site-packages:$MOBY2_PREFIX/lib/python2.7/site-packages:$HOME/class/Detector-Analysis/Visualization_tools/FP_Qband:$PYTHONPATH:$HOME/class/humboldt/update/DataPkg
 export LD_LIBRARY_PATH=$MOBY2_PREFIX/lib64:$MOBY2_PREFIX/lib:$HOME/local/lib:$LD_LIBRARY_PATH
